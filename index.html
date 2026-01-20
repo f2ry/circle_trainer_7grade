@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажер: Окружность, хорда и диаметр</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="task1">Задание 1: Определи элемент</button>
+            <button class="tab-btn" data-tab="task2">Задание 2: Классификация</button>
+            <button class="tab-btn" data-tab="task3">Задание 3: Верно/Неверно</button>
+        </nav>
+
+        <main>
+            <!-- Задание 1: Определи элемент -->
+            <section id="task1" class="task active">
+                <div class="task-header">
+                    <h2><i class="fas fa-question-circle"></i> Задание 1. Что изображено на рисунке?</h2>
+                    <p class="task-description">Выберите правильное название для выделенного элемента окружности</p>
+                </div>
+                
+                <div class="task-content">
+                    <div class="figure-container">
+                        <svg id="task1-svg" width="400" height="400" viewBox="0 0 400 400">
+                            <!-- Окружность -->
+                            <circle cx="200" cy="200" r="150" class="circle" />
+                            <!-- Центр -->
+                            <circle cx="200" cy="200" r="3" fill="red" />
+                            <text x="195" y="220" class="center-label">O</text>
+                            
+                            <!-- Случайный элемент будет вставлен здесь -->
+                            <g id="random-element"></g>
+                        </svg>
+                    </div>
+                    
+                    <div class="options-container">
+                        <h3>Выберите правильный ответ:</h3>
+                        <div class="options">
+                            <button class="option-btn" data-value="radius">
+                                <i class="fas fa-long-arrow-alt-right"></i> Радиус
+                            </button>
+                            <button class="option-btn" data-value="diameter">
+                                <i class="fas fa-arrows-alt-h"></i> Диаметр
+                            </button>
+                            <button class="option-btn" data-value="chord">
+                                <i class="fas fa-slash"></i> Хорда
+                            </button>
+                        </div>
+                        
+                        <div class="feedback" id="task1-feedback">
+                            <p>Выберите вариант ответа</p>
+                        </div>
+                        
+                        <div class="task-controls">
+                            <button id="next-task1" class="btn-primary">
+                                Следующий вопрос <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <div class="stats">
+                                <span><i class="fas fa-check-circle"></i> Правильно: <span id="task1-correct">0</span></span>
+                                <span><i class="fas fa-times-circle"></i> Неправильно: <span id="task1-incorrect">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Задание 2: Классификация -->
+            <section id="task2" class="task">
+                <div class="task-header">
+                    <h2><i class="fas fa-sort-amount-down"></i> Задание 2. Классификация элементов</h2>
+                    <p class="task-description">Перетащите каждый элемент в соответствующую категорию</p>
+                </div>
+                
+                <div class="task-content">
+                    <div class="figure-container">
+                        <svg id="task2-svg" width="400" height="400" viewBox="0 0 400 400">
+                            <!-- Окружность -->
+                            <circle cx="200" cy="200" r="140" class="circle" />
+                            <!-- Центр -->
+                            <circle cx="200" cy="200" r="3" fill="red" />
+                            <text x="195" y="220" class="center-label">O</text>
+                            
+                            <!-- Элементы будут сгенерированы скриптом -->
+                            <g id="task2-elements"></g>
+                        </svg>
+                    </div>
+                    
+                    <div class="classification-container">
+                        <h3>Распределите элементы по категориям:</h3>
+                        
+                        <div class="drop-zones">
+                            <div class="drop-zone" data-type="diameter">
+                                <h4><i class="fas fa-arrows-alt-h"></i> Диаметры</h4>
+                                <div class="zone-content"></div>
+                                <p class="zone-info">Хорды, проходящие через центр</p>
+                            </div>
+                            
+                            <div class="drop-zone" data-type="radius">
+                                <h4><i class="fas fa-long-arrow-alt-right"></i> Радиусы</h4>
+                                <div class="zone-content"></div>
+                                <p class="zone-info">Отрезки от центра до окружности</p>
+                            </div>
+                            
+                            <div class="drop-zone" data-type="chord">
+                                <h4><i class="fas fa-slash"></i> Хорды</h4>
+                                <div class="zone-content"></div>
+                                <p class="zone-info">Отрезки, соединяющие две точки окружности (не проходящие через центр)</p>
+                            </div>
+                            
+                            <div class="drop-zone" data-type="other">
+                                <h4><i class="fas fa-ban"></i> Другое</h4>
+                                <div class="zone-content"></div>
+                                <p class="zone-info">Отрезки, не являющиеся ничем из указанного</p>
+                            </div>
+                        </div>
+                        
+                        <div class="elements-to-drag">
+                            <h4>Элементы для распределения:</h4>
+                            <div id="draggable-elements" class="draggable-container">
+                                <!-- Элементы будут добавлены скриптом -->
+                            </div>
+                        </div>
+                        
+                        <div class="task-controls">
+                            <button id="check-task2" class="btn-primary">
+                                <i class="fas fa-check"></i> Проверить
+                            </button>
+                            <button id="reset-task2" class="btn-secondary">
+                                <i class="fas fa-redo"></i> Начать заново
+                            </button>
+                            <div class="feedback" id="task2-feedback"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Задание 3: Верно/Неверно -->
+            <section id="task3" class="task">
+                <div class="task-header">
+                    <h2><i class="fas fa-balance-scale"></i> Задание 3. Верно или Неверно?</h2>
+                    <p class="task-description">Определите, верны ли следующие утверждения</p>
+                </div>
+                
+                <div class="task-content task3-content">
+                    <div class="statement-info">
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar"></div>
+                        </div>
+                        <p>Утверждение <span id="current-statement">1</span> из <span id="total-statements">16</span></p>
+                    </div>
+                    
+                    <div class="statement-container">
+                        <div class="statement-card">
+                            <div class="statement-question">
+                                <h3 id="statement-text"></h3>
+                            </div>
+                            
+                            <div class="statement-options">
+                                <button class="statement-btn true-btn">
+                                    <i class="fas fa-check"></i> Верно
+                                </button>
+                                <button class="statement-btn false-btn">
+                                    <i class="fas fa-times"></i> Неверно
+                                </button>
+                            </div>
+                            
+                            <div class="explanation-container" id="explanation-container">
+                                <div class="explanation">
+                                    <h4><i class="fas fa-lightbulb"></i> Объяснение:</h4>
+                                    <p id="explanation-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="task-controls task3-controls">
+                        <button id="prev-statement" class="btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Назад
+                        </button>
+                        <button id="next-statement" class="btn-primary">
+                            Далее <i class="fas fa-arrow-right"></i>
+                        </button>
+                        
+                        <div class="stats">
+                            <span><i class="fas fa-check-circle"></i> Правильно: <span id="task3-correct">0</span></span>
+                            <span><i class="fas fa-times-circle"></i> Неправильно: <span id="task3-incorrect">0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Тренажер для урока геометрии 7 класса. Тема: "Окружность, диаметр и хорда"</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

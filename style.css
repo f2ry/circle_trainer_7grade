@@ -1,0 +1,513 @@
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Заголовок */
+header {
+    background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Навигация */
+.tabs {
+    display: flex;
+    background-color: #f1f3f9;
+    border-bottom: 2px solid #e1e5eb;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 20px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tab-btn:hover {
+    background-color: #e8ebf2;
+    color: #4b6cb7;
+}
+
+.tab-btn.active {
+    background-color: white;
+    color: #4b6cb7;
+    border-bottom: 3px solid #4b6cb7;
+}
+
+/* Основное содержание */
+main {
+    padding: 30px;
+}
+
+.task {
+    display: none;
+}
+
+.task.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.task-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.task-header h2 {
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.task-description {
+    color: #666;
+    font-size: 1.05rem;
+}
+
+/* Контент заданий */
+.task-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.figure-container {
+    flex: 1;
+    min-width: 350px;
+    max-width: 450px;
+    background: #f9fafc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Чтобы ничего не выходило за границы */
+}
+
+.circle {
+    fill: none;
+    stroke: #3498db;
+    stroke-width: 3;
+}
+
+.center-label {
+    font-size: 20px;
+    font-weight: bold;
+    fill: #e74c3c;
+}
+
+/* Задание 1 */
+.options-container {
+    flex: 1;
+    min-width: 300px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.option-btn {
+    padding: 18px 25px;
+    font-size: 1.1rem;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.option-btn:hover {
+    background: #f8f9fa;
+    border-color: #bbb;
+    transform: translateY(-2px);
+}
+
+.option-btn:active {
+    transform: translateY(0);
+}
+
+.option-btn.correct {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.option-btn.incorrect {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+/* Задание 2 */
+.classification-container {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+#task2-svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
+.drop-zones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.drop-zone {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    min-height: 130px;
+    transition: all 0.3s;
+    background-color: #f9f9f9;
+}
+
+.drop-zone.over {
+    border-color: #3498db;
+    background-color: #ebf5fb;
+}
+
+.drop-zone h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.zone-info {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 10px;
+}
+
+.draggable-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    padding: 15px;
+    background: #f1f3f9;
+    border-radius: 10px;
+}
+
+.draggable-element {
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    cursor: move;
+    font-weight: 600;
+    color: #2c3e50;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.draggable-element:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.draggable-element.dragging {
+    opacity: 0.5;
+}
+
+/* Задание 3 */
+.task3-content {
+    display: block;
+}
+
+.statement-info {
+    margin-bottom: 25px;
+}
+
+.progress {
+    height: 10px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    width: 6.25%; /* 1/16 */
+    transition: width 0.5s ease;
+}
+
+.statement-container {
+    margin: 20px 0 40px;
+}
+
+.statement-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+}
+
+.statement-question {
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.statement-question h3 {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    line-height: 1.5;
+}
+
+.statement-options {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-shrink: 0;
+}
+
+.statement-btn {
+    flex: 1;
+    padding: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.true-btn {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+
+.true-btn:hover, .true-btn.selected {
+    background: #c3e6cb;
+}
+
+.false-btn {
+    background: #f8d7da;
+    color: #721c24;
+    border: 2px solid #f5c6cb;
+}
+
+.false-btn:hover, .false-btn.selected {
+    background: #f5c6cb;
+}
+
+.explanation-container {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.explanation {
+    padding: 10px;
+}
+
+.explanation h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.explanation p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Элементы управления */
+.task-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.task3-controls {
+    margin-top: 0;
+    padding-top: 20px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #4b6cb7, #182848);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(75, 108, 183, 0.3);
+}
+
+.btn-secondary {
+    background: #ecf0f1;
+    color: #34495e;
+}
+
+.btn-secondary:hover {
+    background: #dde4e6;
+}
+
+/* Статистика */
+.stats {
+    display: flex;
+    gap: 25px;
+    font-weight: 600;
+}
+
+.stats span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Обратная связь */
+.feedback {
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #f1f3f9;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #e1e5eb;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .task-content {
+        flex-direction: column;
+    }
+    
+    .drop-zones {
+        grid-template-columns: 1fr;
+    }
+    
+    .statement-options {
+        flex-direction: column;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        padding: 15px;
+        justify-content: flex-start;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .figure-container-wide {
+        min-width: 300px;
+    }
+    
+    .statement-card {
+        min-height: 400px;
+    }
+}
